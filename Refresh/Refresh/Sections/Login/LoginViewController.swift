@@ -25,6 +25,13 @@ class LoginViewController: UIViewController {
         return view
     }()
     
+    private lazy var logo: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(named: "Refresh.png")
+        image.canConstraints()
+        return image
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -41,6 +48,10 @@ class LoginViewController: UIViewController {
         
         addSubview(filterView)
         filterView.frame = view.bounds
+        
+        addSubview(logo)
+        logo.centerY(view.centerYAnchor)
+        logo.leading(view.leadingAnchor, spacing: 20)
     }
     
 }

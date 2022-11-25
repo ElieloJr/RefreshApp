@@ -38,4 +38,12 @@ extension UIView {
     func height(of size: CGFloat) {
         self.heightAnchor.constraint(equalToConstant: size).isActive()
     }
+    // centerXAnchor
+    func centerX(_ position: NSLayoutAnchor<NSLayoutXAxisAnchor>, spacing: CGFloat = 0) {
+        self.centerXAnchor.constraint(equalTo: position, constant: spacing).isActive()
+    }
+    // centerYAnchor
+    func centerY(_ position: NSLayoutAnchor<NSLayoutYAxisAnchor>, spacing: CGFloat = 0) {
+        self.centerYAnchor.constraint(equalTo: position, constant: spacing).isActive()
+    }
 }
