@@ -9,12 +9,20 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
-    lazy var imageBackgound: UIImageView = {
+    private lazy var imageBackgound: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "womanBackgraund.png")
         image.contentMode = .scaleAspectFill
-        image.translatesAutoresizingMaskIntoConstraints = false
+        image.canConstraints()
         return image
+    }()
+    
+    private lazy var filterView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .black
+        view.layer.opacity = 0.4
+        view.canConstraints()
+        return view
     }()
     
     override func viewDidLoad() {
@@ -31,7 +39,8 @@ class LoginViewController: UIViewController {
         imageBackgound.leading(view.leadingAnchor, spacing: -200)
         imageBackgound.bottom(view.bottomAnchor)
         
-        
+        addSubview(filterView)
+        filterView.frame = view.bounds
     }
     
 }
