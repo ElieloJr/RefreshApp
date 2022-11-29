@@ -44,8 +44,27 @@ class LoginViewController: UIViewController {
                     "Noticias fresquinhas \n" +
                     "Aqueles assuntos que você tem curiosidade \n" +
                     "E muito mais..."
+        text.isEditable = false
         text.canConstraints()
         return text
+    }()
+    
+    private lazy var loginGoogleButton: UIButton = {
+        let buttonCollor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1.00)
+        let imageButton = UIImage(named: "iconGoogle.png")
+        
+        let button = UIButton()
+        button.backgroundColor = buttonCollor
+        button.setTitle("Entrar com Google", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.setImage(imageButton, for: .normal)
+        button.adjustsImageWhenHighlighted = false
+        button.imageEdgeInsets = UIEdgeInsets(top: 10, left: 40, bottom: 10, right: 250)
+        button.titleEdgeInsets = UIEdgeInsets(top: 10, left: -20, bottom: 10, right: 30)
+        button.addTarget(self, action: #selector(openLoginWithGoogle), for: .touchUpInside)
+        button.layer.cornerRadius = 10
+        button.canConstraints()
+        return button
     }()
     
     override func viewDidLoad() {
@@ -74,6 +93,15 @@ class LoginViewController: UIViewController {
         inviteText.leading(logo.leadingAnchor, spacing: 14)
         inviteText.trailing(view.trailingAnchor, spacing: 20)
         inviteText.height(of: 500)
+        
+        addSubview(loginGoogleButton)
+        loginGoogleButton.leading(view.leadingAnchor, spacing: 30)
+        loginGoogleButton.trailing(view.trailingAnchor, spacing: -30)
+        loginGoogleButton.height(of: 60)
+        loginGoogleButton.bottom(view.bottomAnchor, spacing: -80)
     }
     
+    @objc func openLoginWithGoogle() {
+        
+    }
 }
