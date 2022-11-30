@@ -12,6 +12,10 @@ class SelectCategoriesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupView()
+    }
+    
+    private func setupView() {
         setBackground(.lightGray)
     }
 }
