@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>499258717184-4pji86q8osoeavg720drori6uajvajmd.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.499258717184-4pji86q8osoeavg720drori6uajvajmd</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCTjmA6ao-2UojEplBYub-OWnZ0fvgerQM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>499258717184</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.eliel.Refresh</string>
+	<key>PROJECT_ID</key>
+	<string>refreshapp-33074</string>
+	<key>STORAGE_BUCKET</key>
+	<string>refreshapp-33074.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:499258717184:ios:bc4cf2481cdf1a220c94e5</string>
+</dict>
+</plist>

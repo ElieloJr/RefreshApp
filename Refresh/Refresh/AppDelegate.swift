@@ -7,17 +7,40 @@
 
 import UIKit
 import CoreData
+import FirebaseCore
+import GoogleSignIn
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: GIDSignIn, UIApplicationDelegate {
 
-
+    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        FirebaseApp.configure()
+        GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
+            if error != nil || user == nil {
+                print("No user with session ON")
+            } else {
+                guard let email = user?.profile?.email else { return }
+                print("Session logged with \(email)")
+            }
+        }
+        
         return true
     }
-
+    
+    override func signIn(with configuration: GIDConfiguration, presenting presentingViewController: UIViewController, callback: GIDSignInCallback? = nil) {
+        print("User email: \(configuration.clientID)")
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        var handled: Bool
+        handled = GIDSignIn.sharedInstance.handle(url)
+        if handled { return true }
+        return false
+    }
+    
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
