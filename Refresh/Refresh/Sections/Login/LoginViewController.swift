@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import GoogleSignIn
 
 class LoginViewController: UIViewController {
 
@@ -22,6 +23,7 @@ class LoginViewController: UIViewController {
         view.backgroundColor = .black
         view.layer.opacity = 0.6
         view.canConstraints()
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -45,6 +47,7 @@ class LoginViewController: UIViewController {
                     "Aqueles assuntos que você tem curiosidade \n" +
                     "E muito mais..."
         text.isEditable = false
+        text.isUserInteractionEnabled = false
         text.canConstraints()
         return text
     }()
@@ -63,9 +66,16 @@ class LoginViewController: UIViewController {
         button.titleEdgeInsets = UIEdgeInsets(top: 10, left: -20, bottom: 10, right: 30)
         button.addTarget(self, action: #selector(openLoginWithGoogle), for: .touchUpInside)
         button.layer.cornerRadius = 10
+        button.isUserInteractionEnabled = false
         button.canConstraints()
         return button
     }()
+    
+    let viewModel = LoginViewModel()
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,6 +85,8 @@ class LoginViewController: UIViewController {
     
     private func setupView() {
         setBackground(.lightGray)
+        viewModel.delegate = self
+        viewModel.fetchUserLogged()
         
         addSubview(imageBackgound)
         imageBackgound.top(view.topAnchor)
@@ -102,6 +114,30 @@ class LoginViewController: UIViewController {
     }
     
     @objc func openLoginWithGoogle() {
-        
+        GIDSignIn.sharedInstance.signIn(with: viewModel.signInConfig, presenting: self)
+        { userResponse, error in
+            guard error == nil else { return }
+            self.viewModel.registerSignIn(with: userResponse)
+        }
+    }
+}
+
+extension LoginViewController: LoginViewDelegate {
+    func callNextSreen() {
+        let categoriesView = SelectCategoriesViewController()
+        let rootController = UINavigationController(rootViewController: categoriesView)
+        rootController.modalPresentationStyle = .fullScreen
+        present(rootController, animated: true)
+    }
+    
+    func showMessageError() {
+        let msgError = "Infelizmente não foi possível logar no momento, tente novamente mais tarde"
+        let alert = UIAlertController(title: "Ops...", message: msgError, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func authorizeLogin() {
+        loginGoogleButton.isUserInteractionEnabled = true
     }
 }
