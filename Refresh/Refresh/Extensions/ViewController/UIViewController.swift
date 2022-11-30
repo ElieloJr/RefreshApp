@@ -14,6 +14,10 @@ extension UIViewController {
         self.view.backgroundColor = color
     }
     
+    func setTitle(_ title: String) {
+        self.title = title
+    }
+    
     func addSubview(_ newView: UIView) {
         self.view.addSubview(newView)
     }

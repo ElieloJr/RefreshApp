@@ -16,6 +16,7 @@ class SelectCategoriesViewController: UIViewController {
     }
     
     private func setupView() {
+        setTitle("Categorias de Preferência")
         setBackground(.lightGray)
     }
 }
