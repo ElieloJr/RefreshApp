@@ -33,6 +33,7 @@ class PersistentData {
         let entity = NSEntityDescription.entity(forEntityName: "UserData", in: managedContext)!
         let userRegister = NSManagedObject(entity: entity, insertInto: managedContext)
         
+        userRegister.setValue(UUID(), forKey: "identifier")
         userRegister.setValue(user.name, forKey: "name")
         userRegister.setValue(user.familyName, forKey: "familyName")
         userRegister.setValue(user.email, forKey: "email")
