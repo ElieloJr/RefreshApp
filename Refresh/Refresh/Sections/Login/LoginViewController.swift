@@ -62,8 +62,8 @@ class LoginViewController: UIViewController {
         button.setTitleColor(.black, for: .normal)
         button.setImage(imageButton, for: .normal)
         button.adjustsImageWhenHighlighted = false
-        button.imageEdgeInsets = UIEdgeInsets(top: 10, left: 40, bottom: 10, right: 250)
-        button.titleEdgeInsets = UIEdgeInsets(top: 10, left: -20, bottom: 10, right: 30)
+        button.imageEdgeInsets = UIEdgeInsets(top: 10, left: 40, bottom: 10, right: 220)
+        button.titleEdgeInsets = UIEdgeInsets(top: 10, left: -10, bottom: 10, right: 30)
         button.addTarget(self, action: #selector(openLoginWithGoogle), for: .touchUpInside)
         button.layer.cornerRadius = 10
         button.isUserInteractionEnabled = false

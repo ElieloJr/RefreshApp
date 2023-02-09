@@ -16,7 +16,7 @@ protocol LoginViewDelegate {
 }
 
 class LoginViewModel {
-    var user: UserData = UserData()
+    var user: UserData?
     var delegate: LoginViewDelegate?
     let signInConfig = GIDConfiguration(
         clientID: "499258717184-4pji86q8osoeavg720drori6uajvajmd.apps.googleusercontent.com"
@@ -26,8 +26,13 @@ class LoginViewModel {
         PersistentData.fetchUser { result in
             switch result {
             case .success(let managedObjects):
-                self.user = managedObjects[0]
+                if managedObjects.count == 0 {
+                    self.delegate?.authorizeLogin()
+                } else {
+                    self.user = managedObjects[0]
+                }
                 self.validateLogin()
+                
             case .failure(let error):
                 self.delegate?.authorizeLogin()
                 print(error)
@@ -37,7 +42,8 @@ class LoginViewModel {
     
     func validateLogin() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            if self.user.isLoggedIn {
+            guard let user = self.user else { return }
+            if user.isLoggedIn {
                 self.delegate?.callNextSreen()
             } else {
                 self.delegate?.authorizeLogin()

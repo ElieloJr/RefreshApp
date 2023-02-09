@@ -10,5 +10,7 @@ target 'Refresh' do
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'GoogleSignIn'
+  pod 'SDWebImage'
+  pod 'RxDataSources', '~> 5.0'
 
 end
